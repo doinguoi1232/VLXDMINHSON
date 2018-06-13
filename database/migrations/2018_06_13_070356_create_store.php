@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Store extends Migration
+class CreateStore extends Migration
 {
     /**
      * Run the migrations.
@@ -16,15 +16,15 @@ class Store extends Migration
         Schema::create('stores', function(Blueprint $table)
         {
             $table->increments('id');
+            $table->string('soluong');
             $table->integer('userd_id')->unsigned();
-            $table->integer('category_id')->unsigned();
-            $table->integer('providers_id')->unsigned();
+            $table->integer('products_id')->unsigned();
             $table->foreign('userd_id')->references('id')->on('users')->ondetele('cascade');
-            $table->foreign('category_id')->references('id')->on('categories')->ondetele('cascade');
-            $table->foreign('providers_id')->references('id')->on('provider')->ondetele('cascade');
+            $table->foreign('products_id')->references('id')->on('products')->ondetele('cascade');
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *

@@ -26,7 +26,7 @@
                                     {!! Form::open(['route' => 'postProducts']) !!}
                                         <div class="container">
                                              <div class="form-group">
-                                                <h3 class="text-primary">Thêm tên sản phẩm</h3>
+                                                <h3 class="text-primary">Tên sản phẩm</h3>
                                                  <div class="form-conrols">
                                                      {!! Form::text('name', null, ['class' => 'form-control']) !!}
                                                  </div>
@@ -34,25 +34,56 @@
                                              <div class="form-group">
                                                 <h3 class="text-primary">Số lượng </h3>
                                                  <div class="form-conrols">
-                                                     {!! Form::text('name', null, ['class' => 'form-control']) !!}
+                                                     {!! Form::text('so_luong', null, ['class' => 'form-control']) !!}
                                                  </div>
                                              </div>
                                              <div class="form-group">
                                                 <h3 class="text-primary">Đơn giá</h3>
                                                  <div class="form-conrols">
-                                                     {!! Form::text('name', null, ['class' => 'form-control']) !!}
+                                                     {!! Form::text('don_gia', null, ['class' => 'form-control']) !!}
+                                                 </div>
+                                             </div>
+                                            <div class="form-group">
+                                                <h3 class="text-primary">Tên nhà cùng cấp</h3>
+                                                 <div class="form-conrols">
+                                                     {!! Form::text('nha_cung_cap', null, ['class' => 'form-control']) !!}
                                                  </div>
                                              </div>
                                              <div class="form-group">
-                                                <h3 class="text-primary">Tên nhà cung cấp</h3>
+                                                <h3 class="text-primary">Đơn vị</h3>
                                                  <div class="form-conrols">
-                                                     {!! Form::text('name', null, ['class' => 'form-control']) !!}
+                                                    {{ Form::select('don_vi', [
+                                                        'vien' => 'Vien',
+                                                        'bao' => ' Bao',
+                                                        'cay' => 'Cây',
+                                                        'thung' => 'Thùng',
+                                                        'khoi' => ' Khối',
+                                                        'tan' => 'Tấn',
+                                                        'vien' => 'Vien',
+                                                        'kg' => 'kg']
+                                                     ) }}
+                                                 </div>
+                                             </div>
+                                           <div class="form-group">
+                                                <h3 class="text-primary">Loại sản phẩm</h3>
+                                                 <div class="form-conrols">
+                                                    <select name="categories"  id="members">
+                                                       @foreach($categories as $categorie)
+                                                        <option value="{{$categorie->id}}">{{$categorie->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                 </div>
+                                             </div>
+                                          <div class="form-group">
+                                                <h3 class="text-primary">Ghi chú</h3>
+                                                 <div class="form-conrols">
+                                                     {!! Form::text('ghi_chu', null, ['class' => 'form-control']) !!}
                                                  </div>
                                              </div>
                  
                                          </div>
                                         <div class="container">
-                                            {!! Form::submit('Thêm loại sản phảm', ['class' => 'btn btn-primary']) !!}
+                                            {!! Form::submit('Thêm sản phẩm', ['class' => 'btn btn-primary']) !!}
                                         </div>
                                     {!! Form::close() !!}
                                 </div>

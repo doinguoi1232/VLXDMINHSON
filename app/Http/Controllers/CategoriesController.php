@@ -21,6 +21,9 @@ class CategoriesController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:255',
+        ],
+                [
+            'name.required' => 'Vui lòng nhập tên loại sản phẩm',
         ]); 
         $category=new category;
         $category->name=$request->name;

@@ -17,3 +17,6 @@ Route::post('/create/categories', 'CategoriesController@store')->name('postCateg
 Route::get('/products', 'ProductsController@index')->name('indexProducts');
 Route::get('/create/products', 'ProductsController@create')->name('getProducts');
 Route::post('/create/products', 'ProductsController@store')->name('postProducts');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

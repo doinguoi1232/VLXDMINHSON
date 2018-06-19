@@ -38,15 +38,22 @@ class productsController extends Controller
         $products->providers_id=1;
         $products->save();
         $soluong_stores = stores::all();
-//        foreach ($soluong_stores as $soluong_store){
-//            if($soluong_store->name==)
-//        }
+           foreach ($soluong_stores as $soluong_store){
+               if($soluong_store->name==$request->name){
+                    $stores_soluong=stores::where('name',$request->name)->first();
+                    $stores_id = stores::find($stores_soluong->id);
+                    $stores_id->soluong=$stores_soluong->soluong+$request->so_luong;
+                    $stores_id->save();
+                    return redirect()->route('indexCategories');
+               }
+           }
         $stores=new stores;
         $stores->soluong=$request->so_luong;
         $stores->products_id=$products->id;
         $stores->userd_id=1;
         $stores->name=$request->name;
         $stores->save();
+        return redirect()->route('indexCategories');
         
        
     }

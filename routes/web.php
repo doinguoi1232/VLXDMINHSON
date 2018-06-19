@@ -17,6 +17,12 @@ Route::post('/create/categories', 'CategoriesController@store')->name('postCateg
 Route::get('/products', 'ProductsController@index')->name('indexProducts');
 Route::get('/create/products', 'ProductsController@create')->name('getProducts');
 Route::post('/create/products', 'ProductsController@store')->name('postProducts');
+Route::get('/create/order', 'OrderController@create')->name('getOrder');
+Route::post('/create/order', 'OrderController@store')->name('postOrder');
+Route::get('/order', 'OrderController@index')->name('indexOreder');
+ Route::get('/order/{id}', 'OrderController@show')->name('OrederShow');
+ Route::get('/create/order_detai/store', 'OrderController@createOrderDetail')->name('getOrderDetailStrore');
+Route::post('/create/order_detai/store', 'OrderController@storeOrderDetail')->name('postOrderDetailStrore');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

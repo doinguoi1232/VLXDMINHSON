@@ -23,23 +23,37 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="basic-elements">
-                                    {!! Form::open(['route' => 'postOrder']) !!}
+                                    {!! Form::open(['route' => 'postOrderDetailStrore']) !!}
+   
                                         <div class="container">
                                              <div class="form-group">
-                                                <h3 class="text-primary">Tên Khách hàng</h3>
+                                                 <input type="text" value="<?php echo $detail;?>" name="order_id">
+                                                <h3 class="text-primary">Tên Sản phẩm:</h3>
                                                  <div class="form-conrols">
-                                                     {!! Form::text('tenkhachhang', null, ['class' => 'form-control']) !!}
+                                                    <select name="ten_san_pham"  id="members">
+                                                      
+                                                       @foreach($products as $product)
+                                                            <option value="{{$product->id}}">{{$product->name}}</option>
+                                                       @endforeach
+                                                    </select>
+                                                 </div>
+                                             </div>
+                                              <div class="form-group">
+                                                <h3 class="text-primary">Số lượng:</h3>
+                                                 <div class="form-conrols">
+                                                   
+                                                     {!! Form::text('so_luong', null, ['class' => 'form-control']) !!}
                                                  </div>
                                              </div>
                                              <div class="form-group">
-                                                <h3 class="text-primary">Tiền đã thanh toán</h3>
+                                                <h3 class="text-primary">Giảm giá:</h3>
                                                  <div class="form-conrols">
-                                                     {!! Form::text('tiendathanhtoan', null, ['class' => 'form-control']) !!}
+                                                     {!! Form::text('giam_gia', null, ['class' => 'form-control']) !!}
                                                  </div>
                                              </div>
                                              
                                         <div class="container">
-                                            {!! Form::submit('Thêm đơn hàng', ['class' => 'btn btn-primary']) !!}
+                                            {!! Form::submit('Thêm sẩn phẩm vào đơn hàng', ['class' => 'btn btn-primary']) !!}
                                         </div>
                                     {!! Form::close() !!}
                                 </div>

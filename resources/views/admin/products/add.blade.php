@@ -37,6 +37,12 @@
                                                      {!! Form::text('so_luong', null, ['class' => 'form-control']) !!}
                                                  </div>
                                              </div>
+                                            <div class="form-group">
+                                                <h3 class="text-primary">Giá bán </h3>
+                                                 <div class="form-conrols">
+                                                     {!! Form::text('gia_ban', null, ['class' => 'form-control']) !!}
+                                                 </div>
+                                             </div>
                                              <div class="form-group">
                                                 <h3 class="text-primary">Đơn giá</h3>
                                                  <div class="form-conrols">

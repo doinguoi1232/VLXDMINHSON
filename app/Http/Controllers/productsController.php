@@ -33,6 +33,7 @@ class productsController extends Controller
         $products->donvitinh=$request->don_vi;
         $products->ghichu=$request->ghi_chu;
         $products->description=222;
+        $products->giaban=$request->gia_ban;
         $products->userd_id=1;
         $products->category_id=$request->categories;
         $products->providers_id=1;

@@ -20,7 +20,9 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <button type="button" class="btn btn-danger">Thêm hàng có trong kho</button>
+<!--                                <button type="button" class="btn btn-danger">Thêm hàng có trong kho</button>-->
+                                
+                                 <a href="{{ route('getOrderDetailStrore', ['id' => $orderId]) }}">Thêm hàng có trong kho</a>
 <button type="button" class="btn btn-success">Thêm hàng không có trong kho</button>
                                 <div class="table-responsive m-t-40">
                                     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">

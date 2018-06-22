@@ -31,9 +31,26 @@ class CategoriesController extends Controller
         $category->parent_id=11;
         $category->keywords=$request->name;
         $category->description=222;
+        $category->save();    
+    }
+    
+    public function edit($id)       
+    {
+        $category = category::find($id);
+        return view('admin.categories.edit')->with('category', $category);
+    }
+    
+    public function editStore(Request $request ,$id)       
+    {
+        $category = category::find($id);
+        $category->name=$request->name;
         $category->save();
-
-
-       
+        return redirect()->route('indexCategories');
+    }
+    
+    public function destroy($id)       
+    {
+        category::destroy($id);
+        return redirect()->route('indexCategories');
     }
 }

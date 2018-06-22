@@ -8,6 +8,12 @@ use App\products;
 use App\stores;
 class productsController extends Controller
 {
+    public function index()
+    {
+        $products = products::all();
+        return view('admin.products.index')->with('products', $products);
+       
+    }
     public function create()
     {
         $categories = Category::all();
@@ -40,8 +46,8 @@ class productsController extends Controller
         $products->save();
         $soluong_stores = stores::all();
            foreach ($soluong_stores as $soluong_store){
-               if($soluong_store->name==$request->name){
-                    $stores_soluong=stores::where('name',$request->name)->first();
+               if($soluong_store->products==$products->id){
+                    $stores_soluong=stores::where('products_id',$products->id)->first();
                     $stores_id = stores::find($stores_soluong->id);
                     $stores_id->soluong=$stores_soluong->soluong+$request->so_luong;
                     $stores_id->save();
@@ -52,7 +58,6 @@ class productsController extends Controller
         $stores->soluong=$request->so_luong;
         $stores->products_id=$products->id;
         $stores->userd_id=1;
-        $stores->name=$request->name;
         $stores->save();
         return redirect()->route('indexCategories');
         

@@ -29,15 +29,23 @@
                                                 <th>Name</th>
                                                 <th>Ngày tạo</th>
                                                 <th>Ngày Cập nhật</th>
+                                                <th>Xóa</th>
+                                                <th>Sửa</th>
                                             </tr>
                                         </thead>
                                         <tbody>
 
                                         @foreach($categories as $category)
                                             <tr>
-                                                <td>{{ $category->name }}</td>
+                                                <td> <a href="{{ route('editCategories', ['id' => $category->id]) }}">{{ $category->name }}</a></td>
                                                 <td>{{ $category->created_at }}</td>
                                                 <td>{{ $category->updated_at }}</td>
+                                                <td class="text-center">
+                                                    <a href="{{ route('delteCategories', ['id' => $category->id]) }}"><span class="glyphicon glyphicon-trash"></span>Delete</a>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="{{ route('editCategories', ['id' => $category->id]) }}"><span class="glyphicon glyphicon-trash"></span>Sửa</a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>

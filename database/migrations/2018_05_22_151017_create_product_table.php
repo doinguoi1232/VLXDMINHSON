@@ -22,6 +22,7 @@ class CreateProductTable extends Migration
             $table->string('soluong');
             $table->string('quycach');
             $table->string('donvitinh');
+            $table->string('giaban');
             $table->string('ghichu');
             $table->string('description');
             $table->integer('userd_id')->unsigned();

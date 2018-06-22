@@ -26,18 +26,26 @@
                                     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Ngày tạo</th>
-                                                <th>Ngày Cập nhật</th>
+                                                <th>Tên sản phẩm</th>
+                                                <th>Giá nhập</th>
+                                                <th>Số lượng</th>
+                                                <th>Đơn vị tính</th>
+                                                <th>Giá bán</th>
+                                                <th>Thành tiền giá nhập</th>
+                                                <th>Thành tiền giá bán </th>
                                             </tr>
                                         </thead>
                                         <tbody>
 
-                                        @foreach($categories as $category)
+                                        @foreach($products as $product)
                                             <tr>
-                                                <td>{{ $category->name }}</td>
-                                                <td>{{ $category->created_at }}</td>
-                                                <td>{{ $category->updated_at }}</td>
+                                                <td>{{ $product->name }}</td>
+                                                <td>{{ $product->price }}</td>
+                                                <td>{{ $product->soluong }}</td>
+                                                <td>{{ $product->donvitinh }}</td>
+                                                <td>{{ $product->giaban }}</td>
+                                                <td>{{ $product->price*$product->giaban }}</td>
+                                                <td>{{ $product->giaban*$product->soluong }}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>

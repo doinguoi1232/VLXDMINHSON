@@ -7,6 +7,8 @@ use App\order;
 use App\orderDetail;
 use Illuminate\Support\Facades\DB;
 use App\products;
+use App\stores;
+use App\danhthu;
 class orderController extends Controller
 {
     public function index()       
@@ -72,8 +74,26 @@ class orderController extends Controller
         $orderDetail->save();
         $order = order::findOrFail($request->order_id);
         $order->loinhuan=$order->loinhuan+$orderDetail->tienchuathanhtoan;
-        $order->tongtien=$order->tongtien+$orderDetail->thanhtien;
+        $order->tongtien=$order->tongtien+$orderDetail->thanhtien;        
         $order->save();
+        $danhthu = danhthu::all();
+        foreach ($danhthu as $item){
+              if(date('d-m-Y', strtotime($item->created_at))== date('d-m-Y', strtotime($orderDetail->created_at))){
+                    $danhthu_id=stores::where('created_at',$item->created_at)->first();
+                    $danhthu_item = stores::find($danhthu_id->id);
+                    $danhthu_item->danhthu=$danhthu_item->danhthu-$request->so_luong;
+                    $danhthu_item->save();
+               }
+        }
+        $soluong_stores = stores::all();
+        foreach ($soluong_stores as $soluong_store){
+               if($soluong_store->products_id==$products->id && $soluong_store->soluong>$request->so_luong ){
+                    $stores_soluong=stores::where('products_id',$products->id)->first();
+                    $stores_id = stores::find($stores_soluong->id);
+                    $stores_id->soluong=$stores_soluong->soluong-$request->so_luong;
+                    $stores_id->save();
+               }
+        }
         return redirect()->route('indexOreder');
        
     }

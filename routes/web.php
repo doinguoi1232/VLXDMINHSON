@@ -14,6 +14,9 @@
 Route::get('/categories', 'CategoriesController@index')->name('indexCategories');
 Route::get('/create/categories', 'CategoriesController@create')->name('getCategories');
 Route::post('/create/categories', 'CategoriesController@store')->name('postCategories');
+Route::get('/edit/categories/{id}', 'CategoriesController@edit')->name('editCategories');
+Route::get('/delete/categories/{id}', 'CategoriesController@destroy')->name('delteCategories');
+Route::post('/edit/categories/{id}', 'CategoriesController@editStore')->name('editStoreCategories');
 Route::get('/products', 'ProductsController@index')->name('indexProducts');
 Route::get('/create/products', 'ProductsController@create')->name('getProducts');
 Route::post('/create/products', 'ProductsController@store')->name('postProducts');

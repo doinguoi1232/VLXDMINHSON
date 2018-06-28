@@ -32,6 +32,7 @@ class orderController extends Controller
                 [
             'tenkhachhang.required' => 'Vui lòng nhập tên loại sản phẩm',
         ]); 
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
         $order=new order;
         $order->tenkhachhang=$request->tenkhachhang;
         $order->tongtien=0;
@@ -40,6 +41,16 @@ class orderController extends Controller
         $order->loinhuan=0;
         $order->userd_id=1;
         $order->save();
+        $danhthu = danhthu::all(); 
+        foreach ($danhthu as $item){
+              if((date('d-m-Y', strtotime($item->created_at)) === date('d-m-Y', strtotime($order->created_at)))){
+                    return redirect()->route('indexOreder');
+               }
+        }
+        $danhthu=new danhthu;
+        $danhthu->danhthu=0;
+        $danhthu->save();
+        return redirect()->route('indexOreder');
     }
 
     public function show($id)
@@ -59,6 +70,7 @@ class orderController extends Controller
     
     public function storeOrderDetail(Request $request)
     {
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
         $products = products::findOrFail($request->ten_san_pham);
         $tienban=$products->giaban*$request->so_luong;
         $tiennhap=$products->price*$request->so_luong;
@@ -79,9 +91,9 @@ class orderController extends Controller
         $danhthu = danhthu::all();
         foreach ($danhthu as $item){
               if(date('d-m-Y', strtotime($item->created_at))== date('d-m-Y', strtotime($orderDetail->created_at))){
-                    $danhthu_id=stores::where('created_at',$item->created_at)->first();
-                    $danhthu_item = stores::find($danhthu_id->id);
-                    $danhthu_item->danhthu=$danhthu_item->danhthu-$request->so_luong;
+                    $danhthu_id=danhthu::where('created_at',$item->created_at)->first();
+                    $danhthu_item = danhthu::find($danhthu_id->id);
+                    $danhthu_item->danhthu=$danhthu_item->danhthu+$orderDetail->tienchuathanhtoan;
                     $danhthu_item->save();
                }
         }
@@ -96,5 +108,11 @@ class orderController extends Controller
         }
         return redirect()->route('indexOreder');
        
+    }
+
+    public function listDanhthu()
+    {
+        $danhthu = danhthu::all(); 
+        return view('admin.danhthu.index')->with('danhthu', $danhthu);
     }
 }

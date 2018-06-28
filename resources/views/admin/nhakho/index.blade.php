@@ -4,11 +4,11 @@
             <!-- Bread crumb -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">Dashboard</h3> </div>
+                    <h3 class="text-primary">Vật liệu xây dựng minh Sơn</h3> </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item active">Vật liệu xây dựng minh Sơn</li>
                     </ol>
                 </div>
             </div>
@@ -20,32 +20,27 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Data Export</h4>
-                                <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
+                    
                                 <div class="table-responsive m-t-40">
                                     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
+                                                <th>id</th>
+                                                
                                                 <th>Tên sản phẩm</th>
-                                                <th>Giá nhập</th>
                                                 <th>Số lượng</th>
-                                                <th>Đơn vị tính</th>
-                                                <th>Giá bán</th>
-                                                <th>Thành tiền giá nhập</th>
-                                                <th>Thành tiền giá bán </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-
-                                        @foreach($products as $product)
+                                        <?php $stt=0;?>
+                                        @foreach($nhakho as $nhakhos)
                                             <tr>
-                                                <td>{{ $product->name }}</td>
-                                                <td>{{ number_format($product->price,0,",",".") }} </td>
-                                                <td>{{ $product->soluong }}</td>
-                                                <td>{{ $product->donvitinh }}</td>
-                                                <td>{{ number_format($product->giaban,0,",",".") }} </td>
-                                                <td>{{ number_format($product->price*$product->giaban,0,",",".") }} </td>
-                                                <td>{{ number_format( $product->giaban*$product->soluong,0,",",".") }} </td>
+                                                <?php $products = DB::table('products')->where('id',
+                                                $nhakhos->id)->first ();?>
+                                                <td> {{ $stt= $stt+1}}</a></td>
+                                                
+                                                <td>{{  $products->name }}</td>
+                                                <td>{{  $nhakhos->soluong }}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>
